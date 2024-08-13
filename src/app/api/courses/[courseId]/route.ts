@@ -38,12 +38,6 @@ export async function DELETE(
             return new NextResponse("Não encontrado", { status: 500 });
         }
 
-        for (const chapter of course.chapters) {
-            if (chapter.muxData?.assetId) {
-                await video.asset.del(chapter.muxData.assetId)
-            }
-        }
-
         const deletedCourse = await db.course.delete({
             where: {
                 id: params.courseId,

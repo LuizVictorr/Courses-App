@@ -49,14 +49,6 @@ export async function DELETE(
                 }
             });
 
-            if (existingMuxData) {
-                await video.asset.del(existingMuxData.assetId);
-                await db.muxData.delete({
-                    where: {
-                        id: existingMuxData.id,
-                    }
-                });
-            }
         }
 
         const deletedChapter = await db.chapter.delete({
