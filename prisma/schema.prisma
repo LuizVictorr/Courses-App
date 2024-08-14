@@ -86,12 +86,13 @@ model UserProgress {
 model Purchase {
   id        String   @id @default(uuid())
   userId    String
-  courserId String
+  courseId String
   createAt  DateTime @default(now())
   updateAt  DateTime @updatedAt
-  course    Course   @relation(fields: [courserId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
-  @@index([courserId])
+  @@unique([userId, courseId])
+  @@index([courseId])
 }
 
 model StripeCustomer {
